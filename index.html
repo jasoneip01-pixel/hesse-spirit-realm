@@ -371,6 +371,12 @@ a:hover{color:#e6c56a}
 }
 .history-desc .event:first-child{margin-top:0}
 
+/* ═══════════════════ CORE VOCABULARY WIDE GRID ═══════════════════ */
+.history-grid-wide{grid-template-columns:1fr 1fr 1fr;gap:1.5rem}
+.history-grid-wide .history-card{padding:1.5rem 1.2rem}
+@media(max-width:480px){.history-grid-wide{grid-template-columns:1fr;gap:1.2rem}}
+@media(min-width:481px)and(max-width:768px){.history-grid-wide{grid-template-columns:1fr 1fr;gap:1.5rem}}
+
 /* ═══════════════════ FOOTER ═══════════════════ */
 .site-footer{
   border-top:1px solid rgba(201,168,76,.1);
@@ -877,7 +883,7 @@ a:hover{color:#e6c56a}
 <section class="history-section" style="padding-top:1rem">
   <h2>核心词汇 · Schl&uuml;sselbegriffe</h2>
   <div class="sec-sub">关键词 · 德文对照</div>
-  <div class="history-grid" style="grid-template-columns:1fr 1fr 1fr">
+  <div class="history-grid history-grid-wide">
     <div class="history-card"> <div class="history-era">DER WEG</div> <div class="history-title">道路</div> <div class="history-dates">Der Weg zum Selbst</div> <div class="history-desc">每个人的生命都是一条通往自我（Selbst）的道路。不是外部目标，是内在朝圣。</div> </div>
     <div class="history-card"> <div class="history-era">DIE SEELE</div> <div class="history-title">灵魂</div> <div class="history-dates">Geist vs. Sinnlichkeit</div> <div class="history-desc">灵魂的完整需要精神与感官的和解——而非偏废。Geist（精神）与 Sinnlichkeit（感官性）的终极统一。</div> </div>
     <div class="history-card"> <div class="history-era">DIE POLARITAET</div> <div class="history-title">二极性</div> <div class="history-dates">Einheit der Gegensaetze</div> <div class="history-desc">二元对立的消解是黑塞思想的最高追求。纳尔齐斯vs歌尔德蒙——不是二选一，是合一。</div> </div>
