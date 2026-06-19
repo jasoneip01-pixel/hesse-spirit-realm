@@ -20,7 +20,7 @@
   --blue-muted:#3a5a7b;
   --blue-dim:#2e4a6f;
   --font-display:'Cormorant Garamond',Georgia,serif;
-  --font-body:'Inter','Noto Serif SC',system-ui,sans-serif;
+  --font-body:'Inter','PingFang SC','Microsoft YaHei','Noto Serif SC',system-ui,sans-serif;
   --font-mono:'JetBrains Mono',monospace;
   --max-w:960px;
 }
@@ -75,12 +75,12 @@ a:hover{color:#e6c56a}
 .hero-bg{
   position:absolute;inset:0;
   background:url('images/cover.png') center/cover no-repeat;
-  transform:scale(1.1);filter:brightness(.35) saturate(.7);
+  transform:scale(1.1);filter:brightness(.42) saturate(.75);
   animation:heroZoom 20s ease-out forwards;
 }
 @keyframes heroZoom{
-  0%{transform:scale(1.15);filter:brightness(.25) saturate(.5)}
-  100%{transform:scale(1.05);filter:brightness(.35) saturate(.7)}
+  0%{transform:scale(1.15);filter:brightness(.3) saturate(.55)}
+  100%{transform:scale(1.05);filter:brightness(.42) saturate(.75)}
 }
 .hero-overlay{
   position:absolute;inset:0;
@@ -171,7 +171,14 @@ a:hover{color:#e6c56a}
   color:var(--muted);font-size:.8rem;
 }
 .work-image.loading img{opacity:0}
+.work-image.loading::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(90deg,var(--bg-card) 25%,var(--bg-card-hover) 50%,var(--bg-card) 75%);
+  background-size:200% 100%;animation:shimmer 1.5s ease-in-out infinite;
+}
+@keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
 .work-image.loaded img{opacity:1;transition:opacity .5s}
+.work-image.loaded::before{display:none}
 
 .work-text{padding:1rem 0}
 .work-year{
@@ -204,19 +211,30 @@ a:hover{color:#e6c56a}
 
 /* ═══════════════════ QUOTE DIVIDER ═══════════════════ */
 .quote-divider{
-  max-width:600px;margin:0 auto;
+  max-width:var(--max-w);margin:0 auto;
   padding:6rem 2rem;text-align:center;
   position:relative;
+  background:linear-gradient(180deg,transparent,rgba(219,184,94,.04) 30%,rgba(219,184,94,.06) 70%,transparent);
+}
+.quote-divider-inner{
+  max-width:600px;margin:0 auto;
+  border:1px solid rgba(219,184,94,.18);
+  border-left:none;border-right:none;
+  padding:3rem 2rem;
 }
 .quote-divider::before,.quote-divider::after{
   content:'';display:block;width:40px;height:1px;
-  background:var(--gold-dim);margin:2rem auto;
+  background:var(--gold-dim);margin:2.5rem auto;
+}
+.quote-diamond{
+  color:var(--gold-dim);font-size:.6rem;
+  margin:1.2rem auto;opacity:.5;
 }
 .quote-text{
   font-family:var(--font-display);
   font-size:clamp(1.3rem,2.5vw,1.8rem);
   font-weight:300;font-style:italic;
-  line-height:1.6;color:var(--muted);
+  line-height:1.6;color:var(--ink);
 }
 .quote-original{
   font-family:var(--font-mono);font-size:.65rem;
@@ -344,9 +362,11 @@ a:hover{color:#e6c56a}
 .history-card{
   background:var(--bg-card);border-radius:4px;
   padding:2rem;border:1px solid rgba(201,168,76,.08);
-  transition:all .4s;
   opacity:0;transform:translateY(20px);
   transition:all .6s cubic-bezier(.22,1,.36,1);
+}
+.history-card.history-deep{
+  background:#1e1a16;border-left:3px solid var(--gold-dim);
 }
 .history-card.visible{opacity:1;transform:translateY(0)}
 .history-card:hover{
@@ -390,7 +410,12 @@ a:hover{color:#e6c56a}
   color:var(--muted);font-size:.8rem;
 }
 .site-footer .symbol{
-  font-size:2rem;color:var(--gold-dim);margin-bottom:1rem;
+  font-size:2rem;color:var(--gold-dim);margin-bottom:1.5rem;
+}
+.site-footer .closing{
+  font-family:var(--font-display);font-size:1.05rem;
+  font-style:italic;color:var(--muted);
+  max-width:560px;margin:0 auto 1.5rem;line-height:1.8;
 }
 .site-footer a{color:var(--gold-dim)}
 
@@ -398,6 +423,105 @@ a:hover{color:#e6c56a}
 @keyframes fadeUp{
   from{opacity:0;transform:translateY(20px)}
   to{opacity:1;transform:translateY(0)}
+}
+
+/* ═══════════════════ BACK TO TOP ═══════════════════ */
+.back-to-top{
+  position:fixed;bottom:2rem;right:2rem;z-index:200;
+  width:44px;height:44px;border-radius:50%;
+  background:var(--bg-card);border:1px solid rgba(219,184,94,.2);
+  color:var(--gold-dim);font-size:1.2rem;
+  cursor:pointer;opacity:0;pointer-events:none;
+  transition:opacity .4s,border-color .4s,background .4s;
+  display:flex;align-items:center;justify-content:center;
+}
+.back-to-top.visible{opacity:1;pointer-events:auto}
+.back-to-top:hover{
+  border-color:var(--gold);color:var(--gold);
+  background:var(--bg-card-hover);
+}
+
+/* ═══════════════════ READING PROGRESS ═══════════════════ */
+.reading-progress{
+  position:fixed;top:0;left:0;height:2px;
+  background:var(--gold);z-index:300;
+  width:0%;transition:width .1s linear;
+}
+
+/* ═══════════════════ IMAGE LIGHTBOX ═══════════════════ */
+.lightbox{
+  position:fixed;inset:0;z-index:500;
+  background:rgba(13,12,10,.92);
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;pointer-events:none;transition:opacity .4s;
+  cursor:pointer;
+}
+.lightbox.open{opacity:1;pointer-events:auto}
+.lightbox img{
+  max-width:90vw;max-height:90vh;
+  object-fit:contain;border-radius:4px;
+  box-shadow:0 0 60px rgba(0,0,0,.5);
+}
+.lightbox-close{
+  position:absolute;top:1.5rem;right:1.5rem;
+  color:var(--muted);font-size:2rem;cursor:pointer;
+  width:40px;height:40px;display:flex;align-items:center;justify-content:center;
+  transition:color .3s;
+}
+.lightbox-close:hover{color:var(--ink)}
+
+/* ═══════════════════ NEW SECTIONS ═══════════════════ */
+.photo-inset{
+  max-width:var(--max-w);margin:0 auto;padding:2rem 2rem 0;
+  text-align:center;
+}
+.photo-inset img{
+  max-width:280px;border-radius:50%;
+  border:2px solid rgba(219,184,94,.2);
+  filter:sepia(.2) brightness(.9);
+}
+.photo-inset .photo-cap{
+  font-family:var(--font-mono);font-size:.6rem;
+  color:var(--gold-dim);margin-top:.6rem;
+  letter-spacing:.1em;
+}
+
+.poetry-stanza{
+  max-width:600px;margin:0 auto;padding:2rem;
+  text-align:center;
+}
+.poetry-stanza .verse-de{
+  font-family:var(--font-display);font-size:1.1rem;
+  font-style:italic;color:var(--muted);
+  line-height:2;margin-bottom:1.5rem;
+}
+.poetry-stanza .verse-zh{
+  font-size:.9rem;color:var(--ink);
+  line-height:2.2;margin-bottom:1.5rem;
+}
+.poetry-stanza .verse-title{
+  font-family:var(--font-mono);font-size:.65rem;
+  color:var(--gold-dim);letter-spacing:.15em;
+  margin-bottom:1.5rem;
+}
+
+.fun-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:1.5rem;max-width:var(--max-w);margin:0 auto;padding:0 2rem 4rem;
+}
+.fun-card{
+  background:var(--bg-card);border-radius:4px;
+  padding:1.5rem;border:1px solid rgba(201,168,76,.08);
+  transition:border-color .4s;
+}
+.fun-card:hover{border-color:rgba(201,168,76,.2)}
+.fun-card .fun-icon{font-size:1.5rem;margin-bottom:.5rem}
+.fun-card .fun-title{
+  font-family:var(--font-display);font-size:1rem;
+  font-weight:600;color:var(--ink);margin-bottom:.3rem;
+}
+.fun-card .fun-body{
+  font-size:.82rem;line-height:1.7;color:var(--muted);
 }
 
 /* ═══════════════════ RESPONSIVE ═══════════════════ */
@@ -493,9 +617,19 @@ a:hover{color:#e6c56a}
   .hero-arrow{display:none}
 }
 
+/* ── prefers-reduced-motion ── */
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{
+    animation-duration:.01ms!important;
+    animation-iteration-count:1!important;
+    transition-duration:.01ms!important;
+  }
+  html{scroll-behavior:auto}
+}
+
 /* ── Print ── */
 @media print{
-  .timeline-nav,.timeline-bar,.hero-arrow{display:none!important}
+  .timeline-nav,.timeline-bar,.hero-arrow,.back-to-top,.lightbox,.reading-progress{display:none!important}
   body{background:#fff;color:#000}
   .hero{min-height:auto;height:auto;page-break-after:always}
   .hero-bg{filter:none!important}
@@ -504,6 +638,9 @@ a:hover{color:#e6c56a}
 </style>
 </head>
 <body>
+
+<!-- ═══ READING PROGRESS ═══ -->
+<div class="reading-progress" id="readingProgress"></div>
 
 <!-- ═══ TIMELINE NAV ═══ -->
 <nav class="timeline-nav" id="timelineNav">
@@ -515,9 +652,9 @@ a:hover{color:#e6c56a}
   <button class="timeline-dot" data-target="w05"><span class="dot"></span><span class="year-label">1919</span></button>
   <button class="timeline-dot" data-target="w06"><span class="dot"></span><span class="year-label">1920</span></button>
   <button class="timeline-dot" data-target="w07"><span class="dot"></span><span class="year-label">1922</span></button>
-  <button class="timeline-dot" data-target="w10"><span class="dot"></span><span class="year-label">1927</span></button>
-  <button class="timeline-dot" data-target="w08"><span class="dot"></span><span class="year-label">1930</span></button>
-  <button class="timeline-dot" data-target="w09"><span class="dot"></span><span class="year-label">1932</span></button>
+  <button class="timeline-dot" data-target="w08"><span class="dot"></span><span class="year-label">1927</span></button>
+  <button class="timeline-dot" data-target="w09"><span class="dot"></span><span class="year-label">1930</span></button>
+  <button class="timeline-dot" data-target="w10"><span class="dot"></span><span class="year-label">1932</span></button>
   <button class="timeline-dot" data-target="w11"><span class="dot"></span><span class="year-label">1943</span></button>
 </nav>
 
@@ -540,6 +677,13 @@ a:hover{color:#e6c56a}
 <section class="section-intro">
   <p>赫尔曼·黑塞，一位用灵魂书写的精神炼金术士。他的十一部作品不是小说，而是一次次灵魂的探险——从乡愁到觉醒，从分裂到整合，从个体到宇宙。每一部都是一面镜子，映照出我们内心中尚未抵达的精神王国。</p>
 </section>
+
+<!-- ═══ PHOTO ═══ -->
+<div class="photo-inset">
+  <img src="images/hesse-portrait.jpg" alt="赫尔曼·黑塞" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+  <div style="display:none;font-size:.8rem;color:var(--muted);padding:1rem">赫尔曼·黑塞 — 提契诺, 约1946年</div>
+  <div class="photo-cap">HERMANN HESSE · 大约1946年 · 瑞士蒙塔尼奥拉</div>
+</div>
 
 <!-- ═══ LIFE TIMELINE ═══ -->
 <section class="life-section" id="lifeTimeline">
@@ -704,9 +848,12 @@ a:hover{color:#e6c56a}
 
   <!-- QUOTE 1 -->
   <div class="quote-divider">
-    <div class="quote-text">「每一个人的一生都是通向自己的路——路的提示、一条小径的试探。」</div>
-    <div class="quote-original">„Jedermanns Leben ist ein Weg zu sich selber hin, der Versuch eines Weges, die Andeutung eines Pfades.“</div>
-    <div class="quote-author">— 德米安 · Demian · 1919</div>
+    <div class="quote-divider-inner">
+      <div class="quote-text">「每一个人的一生都是通向自己的路——路的提示、一条小径的试探。」</div>
+      <div class="quote-original">„Jedermanns Leben ist ein Weg zu sich selber hin, der Versuch eines Weges, die Andeutung eines Pfades.“</div>
+      <div class="quote-author">— 德米安 · Demian · 1919</div>
+    </div>
+    <div class="quote-diamond">◇</div>
   </div>
 
   <!-- w06: Klingsor -->
@@ -733,8 +880,8 @@ a:hover{color:#e6c56a}
     </div>
   </article>
 
-  <!-- w10: Steppenwolf -->
-  <article class="work-card" id="w10">
+  <!-- w08: Steppenwolf -->
+  <article class="work-card" id="w08">
     <div class="work-image loading"><img src="images/steppenwolf.png" alt="荒原狼" loading="lazy" onload="this.parentElement.classList.replace('loading','loaded')"></div>
     <div class="work-text">
       <div class="work-year">1927</div>
@@ -745,8 +892,8 @@ a:hover{color:#e6c56a}
     </div>
   </article>
 
-  <!-- w08: Narziß und Goldmund -->
-  <article class="work-card" id="w08">
+  <!-- w09: Narziß und Goldmund -->
+  <article class="work-card" id="w09">
     <div class="work-image loading"><img src="images/narziss_goldmund.png" alt="纳尔齐斯与歌尔德蒙" loading="lazy" onload="this.parentElement.classList.replace('loading','loaded')"></div>
     <div class="work-text">
       <div class="work-year">1930</div>
@@ -757,8 +904,8 @@ a:hover{color:#e6c56a}
     </div>
   </article>
 
-  <!-- w09: Morgenlandfahrt -->
-  <article class="work-card" id="w09">
+  <!-- w10: Morgenlandfahrt -->
+  <article class="work-card" id="w10">
     <div class="work-image loading"><img src="images/morgenland.png" alt="东方之旅" loading="lazy" onload="this.parentElement.classList.replace('loading','loaded')"></div>
     <div class="work-text">
       <div class="work-year">1932</div>
@@ -771,9 +918,12 @@ a:hover{color:#e6c56a}
 
   <!-- QUOTE 2 -->
   <div class="quote-divider">
-    <div class="quote-text">「世界并非不完美，也不是在通向完美的漫长途中缓缓跋涉——不，它在每一个瞬间都是完美的。」</div>
-    <div class="quote-original">„Die Welt ist nicht unvollkommen, noch auf einem langen Wege zur Vollkommenheit begriffen. Nein, sie ist vollkommen in jedem Augenblick.“</div>
-    <div class="quote-author">— 玻璃球游戏 · Das Glasperlenspiel · 1943</div>
+    <div class="quote-divider-inner">
+      <div class="quote-text">「世界并非不完美，也不是在通向完美的漫长途中缓缓跋涉——不，它在每一个瞬间都是完美的。」</div>
+      <div class="quote-original">„Die Welt ist nicht unvollkommen, noch auf einem langen Wege zur Vollkommenheit begriffen. Nein, sie ist vollkommen in jedem Augenblick.“</div>
+      <div class="quote-author">— 玻璃球游戏 · Das Glasperlenspiel · 1943</div>
+    </div>
+    <div class="quote-diamond">◇</div>
   </div>
 
   <!-- w11: Glasperlenspiel -->
@@ -795,7 +945,7 @@ a:hover{color:#e6c56a}
   <h2>时代的洪流</h2>
   <div class="sec-sub">Zeitgeist · 黑塞在历史漩涡中的坐标</div>
   <div class="history-grid">
-    <div class="history-card">
+    <div class="history-card history-deep">
       <div class="history-era">1871–1918</div>
       <div class="history-title">德意志帝国</div>
       <div class="history-dates">俾斯麦统一 → 威廉二世 → 一战</div>
@@ -803,7 +953,7 @@ a:hover{color:#e6c56a}
         黑塞生于帝国鼎盛期。俾斯麦的铁血造就了一个军事化的德国——纪律、服从、民族主义。<span class="event">黑塞的童年：教堂钟声与军靴声并存。他的反叛不是青春期躁动，是一个敏感灵魂对铁笼的本能抗拒。</span><span class="event">一战爆发时，德国知识分子几乎一边倒支持战争——黑塞是极少数公开反战的作家之一，代价是失去所有德国读者和朋友。</span>
       </div>
     </div>
-    <div class="history-card">
+    <div class="history-card history-deep">
       <div class="history-era">1919–1933</div>
       <div class="history-title">魏玛共和国</div>
       <div class="history-dates">战败 · 民主实验 · 文化黄金</div>
@@ -811,7 +961,7 @@ a:hover{color:#e6c56a}
         德国历史上第一次民主尝试。通货膨胀、失业、政治暴力——但也是表现主义、包豪斯、精神分析的黄金时代。<span class="event">黑塞在这一时期的作品最具爆发力：〈德米安〉(1919)、〈悉达多〉(1922)、〈荒原狼〉(1927)。他在瑞士隐居，但每部作品都是对魏玛时代灵魂危机的回应——当世界崩塌时，人从哪里找到内在的立足点？</span>
       </div>
     </div>
-    <div class="history-card">
+    <div class="history-card history-deep">
       <div class="history-era">1933–1945</div>
       <div class="history-title">第三帝国</div>
       <div class="history-dates">纳粹 · 二战 · 大屠杀</div>
@@ -819,7 +969,7 @@ a:hover{color:#e6c56a}
         人类历史上最黑暗的十二年。托马斯·曼流亡美国、茨威格自杀、本雅明自杀——无数作家在集中营里消失。<span class="event">黑塞在瑞士幸存——但不是逃避，是坚守。他拒绝所有纳粹出版机构的邀请，暗中资助流亡者，在德国边境印刷反纳粹的小册子。完成〈玻璃球游戏〉(1943)时，盟军已经在轰炸柏林——这部关于人类精神的终极守护——竟是在文明崩塌时写成的。</span>
       </div>
     </div>
-    <div class="history-card">
+    <div class="history-card history-deep">
       <div class="history-era">1945–1962</div>
       <div class="history-title">战后世界</div>
       <div class="history-dates">冷战 · 核恐惧 · 东方觉醒</div>
@@ -888,6 +1038,129 @@ a:hover{color:#e6c56a}
 </section>
 
 
+<!-- ═══ POETRY ═══ -->
+<section class="history-section" style="padding-top:1rem">
+  <h2>黑塞的诗</h2>
+  <div class="sec-sub">Gedichte · 诺奖颁奖词：灵思盎然的诗篇</div>
+  <div class="poetry-stanza">
+    <div class="verse-title">〈阶段〉Stufen · 1941</div>
+    <div class="verse-de">
+      Wie jede Blüte welkt und jede Jugend<br>
+      Dem Alter weicht, blüht jede Lebensstufe,<br>
+      Blüht jede Weisheit auch und jede Tugend<br>
+      Zu ihrer Zeit und darf nicht ewig dauern.<br>
+      Es muß das Herz bei jedem Lebensrufe<br>
+      Bereit zum Abschied sein und Neubeginne,<br>
+      Um sich in Tapferkeit und ohne Trauern<br>
+      In andre, neue Bindungen zu geben.<br>
+      Und jedem Anfang wohnt ein Zauber inne,<br>
+      Der uns beschützt und der uns hilft, zu leben.
+    </div>
+    <div class="verse-zh">
+      正如每朵花都会凋谢，每个青春<br>
+      都会让位给年岁——生命的每一阶段，<br>
+      每一种智慧、每一种德行<br>
+      都只在它的时节绽放，不会永恒。<br>
+      在生命每一次呼唤时，心必须<br>
+      准备好告别与重新开始，<br>
+      以勇气、没有哀伤地<br>
+      将自己交付给新的联结。<br>
+      每一个开始都内含一种魔力，<br>
+      它守护我们，帮我们活下去。
+    </div>
+    <div style="font-size:.65rem;color:rgba(160,152,136,.3);font-family:var(--font-mono)">
+      — 节选自〈阶段〉，黑塞最著名的诗歌之一，写于二战最黑暗的1941年
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ HESSE & EAST ═══ -->
+<section class="history-section" style="padding-top:1rem">
+  <h2>黑塞与东方</h2>
+  <div class="sec-sub">Ost und West · 一个西方灵魂的东方朝圣</div>
+  <div class="history-grid">
+    <div class="history-card history-deep">
+      <div class="history-era">INDISCHE PHILOSOPHIE</div>
+      <div class="history-title">印度哲学</div>
+      <div class="history-desc">外祖父在印度传教30年，母亲出生于印度。黑塞童年被印度神话包围——〈薄伽梵歌〉、〈奥义书〉陪伴他一生。〈悉达多〉不是东方学，是一个西方人用印度的语法讲自己的故事。</div>
+    </div>
+    <div class="history-card history-deep">
+      <div class="history-era">TAOISMUS</div>
+      <div class="history-title">道家</div>
+      <div class="history-desc">黑塞自称「道家思想的追随者」。1911年亚洲之旅后深入研读老子〈道德经〉。〈玻璃球游戏〉中的「无为而治」「阴阳合一」直接来自道家。他在给友人的信中写道："老子是我精神生活中最伟大的体验之一。"</div>
+    </div>
+    <div class="history-card history-deep">
+      <div class="history-era">ZEN-BUDDHISMUS</div>
+      <div class="history-title">禅宗</div>
+      <div class="history-desc">黑塞通过铃木大拙的英文著作接触禅宗。〈悉达多〉中「倾听河流」的顿悟场景本质上是禅宗的「见性」——不是学习真理，是成为真理。晚年他每日冥想，书房挂着日本禅画。</div>
+    </div>
+    <div class="history-card history-deep">
+      <div class="history-era">GEISTIGER BRÜCKENBAU</div>
+      <div class="history-title">精神桥梁</div>
+      <div class="history-desc">黑塞是西方文学史上最彻底的"东西方融合者"。他既不崇拜东方也不诋毁西方——他在两者之间架桥。〈玻璃球游戏〉的卡斯塔利亚就是一个"精神联合国"，容纳人类所有文明的精华。</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ PAINTINGS ═══ -->
+<section class="history-section" style="padding-top:1rem">
+  <h2>黑塞的绘画</h2>
+  <div class="sec-sub">Aquarelle · 三千幅水彩中的诗意世界</div>
+  <div style="max-width:var(--max-w);margin:0 auto;padding:0 2rem;text-align:center">
+    <p style="font-size:.9rem;line-height:1.9;color:var(--muted);max-width:680px;margin:0 auto 2rem">
+      黑塞一生创作了超过3000幅水彩画——提契诺的山峦、卢加诺湖的波光、蒙塔尼奥拉的花园。他不是"会画画的作家"，而是一个在色彩中寻找与文字平行真理的视觉诗人。他的画作曾在瑞士多次展出，研究者认为其"色彩的透明感"与他文字中的"精神清澈"是同一种品质。
+    </p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;max-width:900px;margin:0 auto">
+      <div class="work-image loading" style="aspect-ratio:3/2"><img src="images/hesse-painting-1.png" alt="提契诺风景" loading="lazy" onload="this.parentElement.classList.replace('loading','loaded')" onerror="this.style.display='none';this.parentElement.innerHTML='<div style=display:flex;align-items:center;justify-content:center;height:100%;color:var(--muted);font-size:.75rem>提契诺山峦</div>'"></div>
+      <div class="work-image loading" style="aspect-ratio:3/2"><img src="images/hesse-painting-2.png" alt="蒙塔尼奥拉花园" loading="lazy" onload="this.parentElement.classList.replace('loading','loaded')" onerror="this.style.display='none';this.parentElement.innerHTML='<div style=display:flex;align-items:center;justify-content:center;height:100%;color:var(--muted);font-size:.75rem>蒙塔尼奥拉花园</div>'"></div>
+      <div class="work-image loading" style="aspect-ratio:3/2"><img src="images/hesse-painting-3.png" alt="卢加诺湖" loading="lazy" onload="this.parentElement.classList.replace('loading','loaded')" onerror="this.style.display='none';this.parentElement.innerHTML='<div style=display:flex;align-items:center;justify-content:center;height:100%;color:var(--muted);font-size:.75rem>卢加诺湖</div>'"></div>
+    </div>
+    <div class="photo-cap" style="margin-top:1rem">提契诺 · 蒙塔尼奥拉 · 卢加诺湖 — 黑塞的水彩世界</div>
+  </div>
+</section>
+
+
+<!-- ═══ FUN FACTS ═══ -->
+<section class="history-section" style="padding-top:1rem">
+  <h2>花絮 · 一个人的另一面</h2>
+  <div class="sec-sub">Anekdoten · 不为人知的黑塞</div>
+  <div class="fun-grid">
+    <div class="fun-card">
+      <div class="fun-icon">✉️</div>
+      <div class="fun-title">35,000 封信</div>
+      <div class="fun-body">一生回复了超过三万五千封读者来信。在打字机时代坚持手写——每天清晨四小时，雷打不动。他说："每封回信都是一次小型的灵魂对话。"</div>
+    </div>
+    <div class="fun-card">
+      <div class="fun-icon">🏊</div>
+      <div class="fun-title">每日游泳</div>
+      <div class="fun-body">住在卢加诺湖畔时，每天清晨跳进湖里游泳——从春到秋，不论水温。邻居说他是"湖里最早的人"。他认为冷水是"身体的冥想"。</div>
+    </div>
+    <div class="fun-card">
+      <div class="fun-icon">🏰</div>
+      <div class="fun-title">塔楼书房</div>
+      <div class="fun-body">1920年代住在蒙塔尼奥拉的Cà Camuzzi塔楼——一座16世纪的石塔。书房在塔顶，窗外是阿尔卑斯山和栗子树林。〈荒原狼〉和〈纳尔齐斯与歌尔德蒙〉都在这里写成。</div>
+    </div>
+    <div class="fun-card">
+      <div class="fun-icon">🎸</div>
+      <div class="fun-title">摇滚偶像</div>
+      <div class="fun-body">1960年代美国反文化运动将黑塞奉为精神导师。The Doors、Steppenwolf乐队（以他的小说命名）将他介绍给新一代。一个1887年出生的德语老隐士，成了嬉皮士的圣经作者。</div>
+    </div>
+    <div class="fun-card">
+      <div class="fun-icon">🌿</div>
+      <div class="fun-title">园艺狂人</div>
+      <div class="fun-body">在提契诺亲手打理一座大花园——种玫瑰、番茄、葡萄。园丁是他第三任妻子妮侬之外最重要的日常角色。他曾说："挖土比写小说更真实。"</div>
+    </div>
+    <div class="fun-card">
+      <div class="fun-icon">📚</div>
+      <div class="fun-title">拒读自己的书</div>
+      <div class="fun-body">出版后从不重读自己的作品。有人问他最喜欢哪一部，他回答："下一部——永远只有下一部。"但私下告诉儿子：〈玻璃球游戏〉是他"对这个世界最后的礼物"。</div>
+    </div>
+  </div>
+</section>
+
+
 <!-- ═══ CORE VOCABULARY ═══ -->
 <section class="history-section" style="padding-top:1rem">
   <h2>核心词汇 · Schl&uuml;sselbegriffe</h2>
@@ -908,8 +1181,19 @@ a:hover{color:#e6c56a}
 
 <!-- ═══ FOOTER ═══ -->
 <footer class="site-footer">
+  <div class="closing">「每一个终点都是一个起点，每一个到达都是一次新的出发。」<br>Jeder Ende ist ein Anfang. Jede Ankunft eine neue Heimkehr.</div>
   <div class="symbol">◇</div>
+  <div style="font-size:.7rem;margin-top:.8rem;color:rgba(160,152,136,.3)">Hermann Hesse · 1877–1962</div>
 </footer>
+
+<!-- ═══ BACK TO TOP ═══ -->
+<button class="back-to-top" id="backToTop" aria-label="回到顶部" title="回到顶部">↑</button>
+
+<!-- ═══ IMAGE LIGHTBOX ═══ -->
+<div class="lightbox" id="lightbox">
+  <span class="lightbox-close">×</span>
+  <img src="" alt="" id="lightboxImg">
+</div>
 
 <!-- ═══════ JS ═══════ -->
 <script>
@@ -922,12 +1206,52 @@ const observer = new IntersectionObserver((entries)=>{
   });
 },{threshold:.15,rootMargin:'0px 0px -80px 0px'});
 
-document.querySelectorAll('.work-card,.life-item,.history-card').forEach(el=>observer.observe(el));
+document.querySelectorAll('.work-card,.life-item,.history-card,.fun-card').forEach(el=>observer.observe(el));
+
+// ── Reading Progress Bar ──
+const progressBar = document.getElementById('readingProgress');
+window.addEventListener('scroll',()=>{
+  const h = document.documentElement;
+  const st = h.scrollTop || document.body.scrollTop;
+  const sh = h.scrollHeight - h.clientHeight;
+  const pct = sh ? (st/sh)*100 : 0;
+  progressBar.style.width = pct + '%';
+},{passive:true});
+
+// ── Back to Top ──
+const backBtn = document.getElementById('backToTop');
+window.addEventListener('scroll',()=>{
+  const st = window.scrollY || document.documentElement.scrollTop;
+  backBtn.classList.toggle('visible', st > 600);
+},{passive:true});
+backBtn.addEventListener('click',()=>{
+  window.scrollTo({top:0,behavior:'smooth'});
+});
+
+// ── Image Lightbox ──
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = document.getElementById('lightboxImg');
+document.querySelectorAll('.work-image img, .photo-inset img').forEach(img=>{
+  img.style.cursor = 'pointer';
+  img.addEventListener('click',(e)=>{
+    e.stopPropagation();
+    lightboxImg.src = img.src;
+    lightboxImg.alt = img.alt;
+    lightbox.classList.add('open');
+  });
+});
+lightbox.addEventListener('click',()=>lightbox.classList.remove('open'));
+document.querySelector('.lightbox-close').addEventListener('click',(e)=>{
+  e.stopPropagation();
+  lightbox.classList.remove('open');
+});
+document.addEventListener('keydown',(e)=>{
+  if(e.key==='Escape') lightbox.classList.remove('open');
+});
 
 // ── Timeline Nav active tracking ──
-const sections = ['hero','w01','w02','w03','w04','w05','w06','w07','w10','w08','w09','w11'];
+const sections = ['hero','w01','w02','w03','w04','w05','w06','w07','w08','w09','w10','w11'];
 const dots = document.querySelectorAll('.timeline-dot');
-const progress = document.querySelector('.timeline-bar-inner');
 
 function updateNav(){
   let current = 'hero';
@@ -950,6 +1274,27 @@ dots.forEach(d=>{
     const target = document.getElementById(d.dataset.target);
     if(target) target.scrollIntoView({behavior:'smooth',block:'start'});
   });
+});
+
+// ── Life Timeline: clickable nodes → jump to work ──
+const lifeToWork = {
+  '1904':'w01','1906':'w02','1910':'w03','1914':'w04',
+  '1919':'w05','1920':'w06','1922':'w07','1927':'w08',
+  '1930':'w09','1932':'w10','1943':'w11'
+};
+document.querySelectorAll('.life-item').forEach(item=>{
+  const yearEl = item.querySelector('.life-year');
+  if(!yearEl) return;
+  const year = yearEl.textContent.trim();
+  const workId = lifeToWork[year];
+  if(workId){
+    item.style.cursor = 'pointer';
+    item.title = '点击跳转到对应作品';
+    item.addEventListener('click',()=>{
+      const target = document.getElementById(workId);
+      if(target) target.scrollIntoView({behavior:'smooth',block:'center'});
+    });
+  }
 });
 
 // ── Smooth image load ──
