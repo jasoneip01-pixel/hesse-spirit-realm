@@ -36,29 +36,6 @@ body{
 a{color:var(--gold);text-decoration:none;transition:color .3s}
 a:hover{color:#e6c56a}
 
-/* ═══════════════════ LOADER ═══════════════════ */
-.loader{
-  position:fixed;inset:0;z-index:9999;
-  background:var(--bg);
-  display:flex;align-items:center;justify-content:center;
-  flex-direction:column;gap:1.5rem;
-  transition:opacity 1s;opacity:1;
-}
-.loader.hidden{opacity:0;pointer-events:none}
-.loader-ring{
-  width:48px;height:48px;
-  border:2px solid transparent;
-  border-top-color:var(--gold);
-  border-radius:50%;
-  animation:spin 1.2s linear infinite;
-}
-@keyframes spin{to{transform:rotate(360deg)}}
-.loader-text{
-  font-family:var(--font-body);
-  font-size:.85rem;color:var(--muted);
-  letter-spacing:.15em;text-transform:uppercase;
-}
-
 /* ═══════════════════ TIMELINE NAV ═══════════════════ */
 .timeline-nav{
   position:fixed;left:2rem;top:50%;transform:translateY(-50%);
@@ -506,7 +483,7 @@ a:hover{color:#e6c56a}
 
 /* ── Print ── */
 @media print{
-  .timeline-nav,.timeline-bar,.hero-arrow,.loader{display:none!important}
+  .timeline-nav,.timeline-bar,.hero-arrow{display:none!important}
   body{background:#fff;color:#000}
   .hero{min-height:auto;height:auto;page-break-after:always}
   .hero-bg{filter:none!important}
@@ -515,12 +492,6 @@ a:hover{color:#e6c56a}
 </style>
 </head>
 <body>
-
-<!-- ═══ LOADER ═══ -->
-<div class="loader" id="loader">
-  <div class="loader-ring"></div>
-  <div class="loader-text">精神王国 · 入口开启</div>
-</div>
 
 <!-- ═══ TIMELINE NAV ═══ -->
 <nav class="timeline-nav" id="timelineNav">
@@ -849,11 +820,6 @@ a:hover{color:#e6c56a}
 
 <!-- ═══════ JS ═══════ -->
 <script>
-// ── Loader ──
-window.addEventListener('load',()=>{
-  setTimeout(()=>document.getElementById('loader').classList.add('hidden'),800);
-});
-
 // ── Scroll-triggered visibility ──
 const observer = new IntersectionObserver((entries)=>{
   entries.forEach(entry=>{
