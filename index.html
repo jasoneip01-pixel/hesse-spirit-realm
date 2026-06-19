@@ -226,23 +226,55 @@ a:hover{color:#e6c56a}
 }
 
 /* ═══════════════════ VIDEO EMBED ═══════════════════ */
+
 .video-section{
   max-width:var(--max-w);margin:0 auto;
   padding:4rem 2rem;text-align:center;
 }
+.video-section::before{
+  content:'🎬';display:block;
+  font-size:1rem;margin-bottom:.5rem;
+  opacity:.5;
+}
 .video-wrap{
   position:relative;width:100%;max-width:720px;
-  margin:0 auto;border-radius:4px;overflow:hidden;
-  box-shadow:0 0 40px rgba(201,168,76,.08);
+  margin:0 auto;border-radius:8px;overflow:hidden;
+  box-shadow:0 0 60px rgba(201,168,76,.1);
+  border:1px solid rgba(201,168,76,.15);
+  cursor:pointer;
 }
 .video-wrap video{
   width:100%;display:block;
 }
+.video-play-overlay{
+  position:absolute;inset:0;
+  display:flex;align-items:center;justify-content:center;
+  background:rgba(0,0,0,.3);
+  transition:opacity .5s;z-index:5;
+}
+.video-play-overlay .play-icon{
+  width:64px;height:64px;border-radius:50%;
+  border:2px solid var(--gold);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--gold);font-size:1.5rem;
+  transition:transform .3s,background .3s;
+}
+.video-play-overlay:hover .play-icon{
+  transform:scale(1.1);
+  background:rgba(201,168,76,.15);
+}
+.video-play-overlay.hidden{opacity:0;pointer-events:none}
 .video-caption{
   font-family:var(--font-display);font-style:italic;
   font-size:.95rem;color:var(--muted);
   margin-top:1.5rem;
 }
+.video-section .label{
+  font-family:var(--font-mono);font-size:.6rem;
+  letter-spacing:.2em;text-transform:uppercase;
+  color:var(--gold-dim);margin-bottom:.75rem;
+}
+
 
 /* ═══════════════════ QUOTE DIVIDER ═══════════════════ */
 .quote-divider{
@@ -577,8 +609,10 @@ a:hover{color:#e6c56a}
 
 <!-- ═══ VIDEO 1: Bold Poster Opening ═══ -->
 <section class="video-section" id="video-opening">
-  <div class="video-wrap">
+  <div class="label">VIDEO · 开篇</div>
+  <div class="video-wrap" onclick="this.querySelector('video').paused?this.querySelector('video').play():this.querySelector('video').pause();this.querySelector('.video-play-overlay').classList.toggle('hidden')">
     <video src="videos/opening.mp4" autoplay muted loop playsinline poster="images/cover.png"></video>
+    <div class="video-play-overlay hidden"><div class="play-icon">▶</div></div>
   </div>
   <div class="video-caption">黑塞的精神王国 · 灵魂的炼金术</div>
 </section>
@@ -870,16 +904,20 @@ a:hover{color:#e6c56a}
 
 <!-- ═══ VIDEO 3: Hesse Quote ═══ -->
 <section class="video-section" id="video-quote">
-  <div class="video-wrap">
+  <div class="label">VIDEO · 引语</div>
+  <div class="video-wrap" onclick="this.querySelector('video').paused?this.querySelector('video').play():this.querySelector('video').pause();this.querySelector('.video-play-overlay').classList.toggle('hidden')">
     <video src="videos/quote.mp4" autoplay muted loop playsinline poster="images/cover.png"></video>
+    <div class="video-play-overlay"><div class="play-icon">▶</div></div>
   </div>
   <div class="video-caption">德米安 · 每一个人的一生都是通向自己的路</div>
 </section>
 
 <!-- ═══ VIDEO 4: Light Leak Cinematic Ending ═══ -->
 <section class="video-section" id="video-ending">
-  <div class="video-wrap">
+  <div class="label">VIDEO · 终章</div>
+  <div class="video-wrap" onclick="this.querySelector('video').paused?this.querySelector('video').play():this.querySelector('video').pause();this.querySelector('.video-play-overlay').classList.toggle('hidden')">
     <video src="videos/ending.mp4" autoplay muted loop playsinline poster="images/glasperlenspiel.png"></video>
+    <div class="video-play-overlay"><div class="play-icon">▶</div></div>
   </div>
   <div class="video-caption">卡斯塔利亚 · 永恒的精神家园</div>
 </section>
