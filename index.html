@@ -43,43 +43,55 @@ a{color:var(--gold);text-decoration:none;transition:color .3s}
 a:hover{color:#e6c56a}
 
 /* ═══════════════════ TIMELINE NAV ═══════════════════ */
-.timeline-nav{
-  position:fixed;left:2rem;top:50%;transform:translateY(-50%);
-  z-index:100;display:flex;flex-direction:column;gap:.5rem;
+/* ═══════════════════ SECTION NAV ═══════════════════ */
+.section-nav{
+  position:sticky;top:0;z-index:90;
+  display:flex;align-items:center;justify-content:center;gap:.3rem;
+  background:rgba(26,21,18,.94);
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(219,184,94,.12);
+  padding:.55rem 1.5rem;
+  opacity:0;transform:translateY(-100%);
+  transition:all .35s ease;
 }
-.timeline-dot{
-  display:flex;align-items:center;gap:.6rem;
-  cursor:pointer;transition:all .4s;opacity:.3;
-  border:none;background:none;color:var(--muted);
-  font-family:var(--font-mono);font-size:.65rem;
-  writing-mode:horizontal-tb;
+.section-nav.visible{opacity:1;transform:translateY(0)}
+.section-nav-inner{
+  display:flex;align-items:center;gap:.15rem;
+  overflow-x:auto;scrollbar-width:none;
+  -ms-overflow-style:none;
 }
-.timeline-dot:hover,.timeline-dot.active{
-  opacity:1;color:var(--gold);
+.section-nav-inner::-webkit-scrollbar{display:none}
+.section-nav a,.section-nav .nav-dropdown-btn{
+  display:inline-flex;align-items:center;gap:.35rem;
+  padding:.4rem .9rem;border-radius:6px;
+  font-size:.78rem;font-weight:400;letter-spacing:.03em;
+  color:var(--muted);text-decoration:none;
+  border:none;background:none;cursor:pointer;
+  font-family:var(--font-body);
+  white-space:nowrap;transition:all .25s;
 }
-.timeline-dot .dot{
-  width:8px;height:8px;border-radius:50%;
-  background:currentColor;transition:all .4s;
-  flex-shrink:0;
+.section-nav a:hover,.section-nav .nav-dropdown-btn:hover{color:var(--gold);background:rgba(219,184,94,.06)}
+.section-nav a.active{color:var(--gold);background:rgba(219,184,94,.1)}
+.section-nav .nav-sep{
+  width:1px;height:18px;background:rgba(219,184,94,.15);margin:0 .3rem;flex-shrink:0;
 }
-.timeline-dot.active .dot{
-  width:14px;height:14px;
-  box-shadow:0 0 12px var(--gold);
+.nav-dropdown{position:relative}
+.nav-dropdown-menu{
+  position:absolute;top:100%;right:0;margin-top:.35rem;
+  background:var(--bg-card);border:1px solid rgba(219,184,94,.12);
+  border-radius:8px;padding:.4rem;min-width:130px;
+  display:none;flex-direction:column;gap:.15rem;
+  box-shadow:0 8px 32px rgba(0,0,0,.5);
 }
-.timeline-dot .year-label{
-  transition:opacity .3s;white-space:nowrap;
+.nav-dropdown.open .nav-dropdown-menu{display:flex}
+.nav-dropdown-menu a{
+  padding:.45rem .8rem;border-radius:5px;
+  font-size:.75rem;color:var(--muted);
+  text-decoration:none;transition:all .2s;
+  white-space:nowrap;
 }
-.timeline-dot:not(.active) .year-label{opacity:0;width:0;overflow:hidden}
-.timeline-dot:hover .year-label{opacity:1;width:auto;overflow:visible}
-.timeline-dot-section .dot{
-  width:5px;height:5px;
-  border:1px solid currentColor;
-  background:transparent;
-}
-.timeline-dot-section.active .dot{
-  background:var(--gold);
-  box-shadow:0 0 10px var(--gold);
-}
+.nav-dropdown-menu a:hover{color:var(--gold);background:rgba(219,184,94,.06)}
+.nav-diamond{font-size:.55rem;color:var(--gold);opacity:.5;flex-shrink:0}
 
 /* ═══════════════════ HERO ═══════════════════ */
 .hero{
@@ -658,29 +670,28 @@ a:hover{color:#e6c56a}
 <!-- ═══ READING PROGRESS ═══ -->
 <div class="reading-progress" id="readingProgress"></div>
 
-<!-- ═══ TIMELINE NAV ═══ -->
-<nav class="timeline-nav" id="timelineNav">
-  <button class="timeline-dot" data-target="hero"><span class="dot"></span><span class="year-label">起</span></button>
-  <button class="timeline-dot timeline-dot-section" data-target="lifeTimeline"><span class="dot"></span><span class="year-label">生</span></button>
-  <button class="timeline-dot" data-target="w01"><span class="dot"></span><span class="year-label">1904</span></button>
-  <button class="timeline-dot" data-target="w02"><span class="dot"></span><span class="year-label">1906</span></button>
-  <button class="timeline-dot" data-target="w03"><span class="dot"></span><span class="year-label">1910</span></button>
-  <button class="timeline-dot" data-target="w04"><span class="dot"></span><span class="year-label">1914</span></button>
-  <button class="timeline-dot" data-target="w05"><span class="dot"></span><span class="year-label">1919</span></button>
-  <button class="timeline-dot" data-target="w06"><span class="dot"></span><span class="year-label">1920</span></button>
-  <button class="timeline-dot" data-target="w07"><span class="dot"></span><span class="year-label">1922</span></button>
-  <button class="timeline-dot" data-target="w08"><span class="dot"></span><span class="year-label">1927</span></button>
-  <button class="timeline-dot" data-target="w09"><span class="dot"></span><span class="year-label">1930</span></button>
-  <button class="timeline-dot" data-target="w10"><span class="dot"></span><span class="year-label">1932</span></button>
-  <button class="timeline-dot" data-target="w11"><span class="dot"></span><span class="year-label">1943</span></button>
-  <button class="timeline-dot timeline-dot-section" data-target="history"><span class="dot"></span><span class="year-label">史</span></button>
-  <button class="timeline-dot timeline-dot-section" data-target="research"><span class="dot"></span><span class="year-label">研</span></button>
-  <button class="timeline-dot timeline-dot-section" data-target="nobel"><span class="dot"></span><span class="year-label">奖</span></button>
-  <button class="timeline-dot timeline-dot-section" data-target="poetry"><span class="dot"></span><span class="year-label">诗</span></button>
-  <button class="timeline-dot timeline-dot-section" data-target="hesse-east"><span class="dot"></span><span class="year-label">东</span></button>
-  <button class="timeline-dot timeline-dot-section" data-target="paintings"><span class="dot"></span><span class="year-label">画</span></button>
-  <button class="timeline-dot timeline-dot-section" data-target="funfacts"><span class="dot"></span><span class="year-label">趣</span></button>
-  <button class="timeline-dot timeline-dot-section" data-target="vocabulary"><span class="dot"></span><span class="year-label">词</span></button>
+<!-- ═══ SECTION NAV ═══ -->
+<nav class="section-nav" id="sectionNav">
+  <div class="section-nav-inner">
+    <span class="nav-diamond">◇</span>
+    <a href="#lifeTimeline" data-section="lifeTimeline">生平</a>
+    <a href="#w01" data-section="works">作品</a>
+    <span class="nav-sep"></span>
+    <a href="#history" data-section="history">时代</a>
+    <a href="#research" data-section="research">研究</a>
+    <a href="#nobel" data-section="nobel">诺奖</a>
+    <a href="#poetry" data-section="poetry">诗歌</a>
+    <a href="#hesse-east" data-section="hesse-east">东方</a>
+    <a href="#paintings" data-section="paintings">绘画</a>
+    <span class="nav-sep"></span>
+    <div class="nav-dropdown" id="navMore">
+      <button class="nav-dropdown-btn">更多 ▾</button>
+      <div class="nav-dropdown-menu">
+        <a href="#funfacts">花絮</a>
+        <a href="#vocabulary">词汇</a>
+      </div>
+    </div>
+  </div>
 </nav>
 
 <!-- ═══ HERO ═══ -->
@@ -1311,32 +1322,56 @@ document.addEventListener('keydown',(e)=>{
   if(e.key==='Escape') lightbox.classList.remove('open');
 });
 
-// ── Timeline Nav active tracking ──
-const sections = ['hero','lifeTimeline','w01','w02','w03','w04','w05','w06','w07','w08','w09','w10','w11','history','research','nobel','poetry','hesse-east','paintings','funfacts','vocabulary'];
-const dots = document.querySelectorAll('.timeline-dot');
+// ── Section Nav ──
+const sectionNav = document.getElementById('sectionNav');
+const navLinks = sectionNav.querySelectorAll('a[data-section]');
 
-function updateNav(){
-  let current = 'hero';
-  sections.forEach(id=>{
+// Match sections to nav items
+const sectionMap = {
+  'lifeTimeline':'lifeTimeline','works':'w01',
+  'history':'history','research':'research','nobel':'nobel',
+  'poetry':'poetry','hesse-east':'hesse-east',
+  'paintings':'paintings'
+};
+
+// Show nav after hero scrolls past
+window.addEventListener('scroll',()=>{
+  const heroH = document.getElementById('hero').offsetHeight;
+  const visible = window.scrollY > heroH * 0.6;
+  sectionNav.classList.toggle('visible', visible);
+
+  // Track active section
+  let current = 'lifeTimeline';
+  const secs = ['lifeTimeline','w01','history','research','nobel','poetry','hesse-east','paintings','funfacts','vocabulary'];
+  for(const id of secs){
     const el = document.getElementById(id);
-    if(!el) return;
-    const rect = el.getBoundingClientRect();
-    if(rect.top <= window.innerHeight/2) current = id;
-  });
-  dots.forEach(d=>{
-    d.classList.toggle('active', d.dataset.target === current);
-  });
-}
+    if(!el) continue;
+    if(el.getBoundingClientRect().top <= window.innerHeight/2) current = id;
+  }
 
-window.addEventListener('scroll', updateNav, {passive:true});
+  // Map back to nav section
+  let activeSection = current;
+  if(['w01','w02','w03','w04','w05','w06','w07','w08','w09','w10','w11'].includes(current)) activeSection = 'works';
+  if(['funfacts','vocabulary'].includes(current)) activeSection = current;
 
-// ── Dot click scroll ──
-dots.forEach(d=>{
-  d.addEventListener('click',()=>{
-    const target = document.getElementById(d.dataset.target);
-    if(target) target.scrollIntoView({behavior:'smooth',block:'start'});
+  navLinks.forEach(a=>{
+    const sec = a.dataset.section;
+    if(sec === 'works' && ['w01','w02','w03','w04','w05','w06','w07','w08','w09','w10','w11'].includes(current)){
+      a.classList.add('active');
+    } else {
+      a.classList.toggle('active', sec === activeSection);
+    }
   });
+},{passive:true});
+
+// Dropdown toggle
+const navMore = document.getElementById('navMore');
+const dropdownBtn = navMore.querySelector('.nav-dropdown-btn');
+dropdownBtn.addEventListener('click',(e)=>{
+  e.stopPropagation();
+  navMore.classList.toggle('open');
 });
+document.addEventListener('click',()=>navMore.classList.remove('open'));
 
 // ── Life Timeline: clickable nodes → jump to work ──
 const lifeToWork = {
