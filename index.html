@@ -9,16 +9,16 @@
 /* ═══════════════════ RESET & BASE ═══════════════════ */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#0d0c0a;
-  --bg-card:#181512;
-  --bg-card-hover:#1f1c18;
-  --gold:#c9a84c;
-  --gold-dim:#8a7333;
+  --bg:#1a1512;
+  --bg-card:#25201c;
+  --bg-card-hover:#2d2823;
+  --gold:#dbb85e;
+  --gold-dim:#a68a4a;
   --ink:#f0ede8;
-  --muted:#8a857e;
-  --accent:#8b2e2e;
-  --blue-muted:#2a4a6b;
-  --blue-dim:#1e3a5f;
+  --muted:#a09888;
+  --accent:#a04040;
+  --blue-muted:#3a5a7b;
+  --blue-dim:#2e4a6f;
   --font-display:'Cormorant Garamond',Georgia,serif;
   --font-body:'Inter','Noto Serif SC',system-ui,sans-serif;
   --font-mono:'JetBrains Mono',monospace;
@@ -632,7 +632,15 @@ a:hover{color:#e6c56a}
 
   <!-- w01: Peter Camenzind -->
   <article class="work-card" id="w01">
-</article>
+    <div class="work-image loading"><img src="images/camenzind.png" alt="彼得·卡门青德" loading="lazy" onload="this.parentElement.classList.replace('loading','loaded')"></div>
+    <div class="work-text">
+      <div class="work-year">1904</div>
+      <h2 class="work-title">彼得·卡门青德</h2>
+      <div class="work-title-de">Peter Camenzind</div>
+      <p class="work-desc">一个瑞士山村少年走向城市的旅程——在慕尼黑和苏黎世之间徘徊，经历了友情、爱情与孤独，最终回到山间，在自然与人类之爱中找到归宿。黑塞的处女作一鸣惊人，托马斯·曼盛赞其"清新如阿尔卑斯山风"。这部作品奠定了黑塞贯穿一生的母题：现代人的精神漂泊与回归自然。</p>
+      <div class="work-tags"><span>乡愁</span><span>觉醒</span><span>自然</span><span>流浪</span><span>成名作</span></div>
+    </div>
+  </article>
 
   <!-- w02: Unterm Rad -->
   <article class="work-card" id="w02">
@@ -641,7 +649,7 @@ a:hover{color:#e6c56a}
       <div class="work-year">1906</div>
       <h2 class="work-title">在轮下</h2>
       <div class="work-title-de">Unterm Rad</div>
-      <p class="work-desc">天才少年汉斯在严苛教育体制下走向崩溃。黑塞最锋利的社会批判——尖子生的悲剧不是不够努力，而是从未被允许成为自己。</p>
+      <p class="work-desc">以毛尔布隆神学院经历为原型，讲述少年汉斯在压抑的教育机器下从天才走向毁灭。黑塞最锋利的社会批判——尖子生的悲剧不是不够努力，而是从未被允许成为自己。1906年出版后引发德国教育界震动，被比作"德国的〈红与黑〉"。黑塞本人坦言："这是我伤疤上长出的文字。"</p>
       <div class="work-tags"><span>教育</span><span>批判</span><span>少年</span><span>悲剧</span></div>
     </div>
   </article>
@@ -653,7 +661,7 @@ a:hover{color:#e6c56a}
       <div class="work-year">1910</div>
       <h2 class="work-title">格特鲁德</h2>
       <div class="work-title-de">Gertrud</div>
-      <p class="work-desc">音乐家与女高音之间的三角之恋。通过音乐探讨孤独与共鸣——两颗孤独的灵魂能否通过艺术真正相遇？</p>
+      <p class="work-desc">作曲家库恩在一次意外中致残后，与女高音格特鲁德和歌唱家穆特之间的三角纠葛。探讨了一个哲学命题：两颗孤独的灵魂能否通过艺术真正相遇？尼采式的"日神与酒神"对立已隐现其中。黑塞本人是莫扎特的狂热爱好者，书中大量音乐分析出自少年时期在教堂唱诗班的亲身经历。</p>
       <div class="work-tags"><span>音乐</span><span>爱情</span><span>孤独</span><span>艺术</span></div>
     </div>
   </article>
@@ -665,7 +673,7 @@ a:hover{color:#e6c56a}
       <div class="work-year">1914</div>
       <h2 class="work-title">罗斯哈尔德</h2>
       <div class="work-title-de">Roßhalde</div>
-      <p class="work-desc">画家约翰与妻子的婚姻解体——艺术家的孤独与家庭责任的不可调和。黑塞个人婚姻危机的投射。</p>
+      <p class="work-desc">以自身第一段婚姻为蓝本，讲述画家约翰在创作冲动与家庭责任之间的撕裂。这部"家庭悲剧"（黑塞自语）以近乎冷酷的旁观者视角解剖了一段婚姻的死亡——作者写作时自己正经历着完全相同的崩溃。研究者认为，这是理解黑塞1910年代精神危机的钥匙文本。</p>
       <div class="work-tags"><span>婚姻</span><span>艺术家</span><span>孤独</span><span>自传性</span></div>
     </div>
   </article>
@@ -677,7 +685,7 @@ a:hover{color:#e6c56a}
       <div class="work-year">1919</div>
       <h2 class="work-title">德米安</h2>
       <div class="work-title-de">Demian</div>
-      <p class="work-desc">少年辛克莱在神秘朋友德米安的引导下，从两个世界（光明与黑暗）的裂缝中寻找真正的自我。一战结束那年出版，震撼一代人。"鸟破壳而出。蛋就是世界。谁要出生，就必须摧毁一个世界。"</p>
+      <p class="work-desc">1919年以"埃米尔·辛克莱"为笔名出版——许多德国青年以为作者是个20岁新锐作家。荣格心理学首次文学化：阿尼玛（夏娃夫人）、阴影（克罗默）、自性化（破壳）。托马斯·曼称其为"德国的〈天堂与地狱〉"。1960年代成为全球青年反文化运动核心文本。</p>
       <div class="work-tags"><span>自我</span><span>启蒙</span><span>双重世界</span><span>荣格</span></div>
     </div>
   </article>
@@ -695,7 +703,7 @@ a:hover{color:#e6c56a}
       <div class="work-year">1920</div>
       <h2 class="work-title">克林索尔的最后夏天</h2>
       <div class="work-title-de">Klingsors letzter Sommer</div>
-      <p class="work-desc">画家克林索尔在生命的最后一个夏天，以疯狂的创造力燃烧自己，用浓烈的色彩对抗死亡。黑塞最炽热、最绚烂的作品——生命纵火。</p>
+      <p class="work-desc">以好友表现主义画家路易斯·莫伊莱特为原型。克林索尔用酗酒、狂欢、暴烈色彩对抗逼近的死亡——不是哀叹，而是燃烧。黑塞自己称之为"生命中唯一一次真正纵情的写作"。色彩之浓烈被誉为"文学中的梵高"，与同年完成的〈德米安〉形成一对：一个向内深入灵魂，一个向外燃烧世界。</p>
       <div class="work-tags"><span>画家</span><span>色彩</span><span>死亡</span><span>表现主义</span></div>
     </div>
   </article>
@@ -707,7 +715,7 @@ a:hover{color:#e6c56a}
       <div class="work-year">1922</div>
       <h2 class="work-title">悉达多</h2>
       <div class="work-title-de">Siddhartha</div>
-      <p class="work-desc">古印度婆罗门之子悉达多，放弃一切踏上求道之路——苦行、尘世、财富、欲望，最终在一条河边找到了智慧的尽头：倾听。黑塞最广为人知的杰作，东方智慧与西方灵魂的完美交融。</p>
+      <p class="work-desc">婆罗门之子悉达多从沙门苦行到世俗欲望，从富商到赌徒，最终在河边领悟：智慧不可言传，只能亲历。黑塞把印度哲学、佛教与西方存在主义熔于一炉。1922年出版时反应平淡，1960年代经美国反文化运动重新发现——成为西方知识分子理解东方智慧的经典入口。亨利·米勒说："这部小说比一千本哲学书更接近真理。"</p>
       <div class="work-tags"><span>东方智慧</span><span>河流</span><span>求道</span><span>圆融</span></div>
     </div>
   </article>
@@ -719,7 +727,7 @@ a:hover{color:#e6c56a}
       <div class="work-year">1927</div>
       <h2 class="work-title">荒原狼</h2>
       <div class="work-title-de">Steppenwolf</div>
-      <p class="work-desc">哈利·哈勒，一个自称"荒原狼"的知识分子，在资产阶级的舒适与精神分裂之间撕扯。魔术剧院、不朽者、莫扎特——黑塞用超现实主义的手术刀解剖了现代人的灵魂分裂。1960年代全球反文化运动的圣经。</p>
+      <p class="work-desc">1927年出版的"灵魂自传"——哈利·哈勒就是黑塞自己。莫扎特与爵士乐、歌德与汽车——黑塞用超现实主义解剖了现代人的灵魂分裂。荣格分析心理学的文学巅峰。托马斯·曼称之为"德国的〈尤利西斯〉"。1960年代青年人手一本——列侬、凯鲁亚克、鲍勃·迪伦都是哈勒的同类。</p>
       <div class="work-tags"><span>都市</span><span>分裂</span><span>超现实</span><span>不朽者</span></div>
     </div>
   </article>
@@ -731,7 +739,7 @@ a:hover{color:#e6c56a}
       <div class="work-year">1930</div>
       <h2 class="work-title">纳尔齐斯与歌尔德蒙</h2>
       <div class="work-title-de">Narziß und Goldmund</div>
-      <p class="work-desc">中世纪修道院中，理性自律的纳尔齐斯与感性流浪的歌尔德蒙——两条相反的灵魂路径，却共同抵达了生命的真相。黑塞对"二元对立"最深刻的探讨：理性与感性、精神与感官、秩序与自由，从来不是选择题。</p>
+      <p class="work-desc">理性自律的纳尔齐斯（学者/禁欲）与感性流浪的歌尔德蒙（艺术家/纵欲）——两条截然相反的灵魂路径，却在生命尽头相遇。不是对立，而是互补。黑塞对二律背反（Antinomie）最深刻的表达——理念与感官、精神与自然从来不是选择题。黑塞自认这是他"最具形式完美"的小说。</p>
       <div class="work-tags"><span>理性</span><span>感性</span><span>修道院</span><span>游历</span><span>二元</span></div>
     </div>
   </article>
@@ -743,7 +751,7 @@ a:hover{color:#e6c56a}
       <div class="work-year">1932</div>
       <h2 class="work-title">东方之旅</h2>
       <div class="work-title-de">Die Morgenlandfahrt</div>
-      <p class="work-desc">一次穿越时空的"精神东方"之旅——朝圣者们向东方出发，寻找真理。但真正的旅程不在外部，而在每个朝圣者的内心。对"共同体"与"信仰"的极致冥想。</p>
+      <p class="work-desc">一部薄薄的中篇，却是黑塞最神秘的作品。秘密结社"圣光联盟"的朝圣之旅——成员中有莫扎特、歌德、唐·吉诃德穿越时空同行。黑塞用这部小说回应了一个深刻问题：当一个人丢掉了他的信仰共同体，他能否独自成圣？这是〈玻璃球游戏〉的序章。</p>
       <div class="work-tags"><span>神秘</span><span>共同体</span><span>精神之旅</span><span>流浪</span></div>
     </div>
   </article>
@@ -761,7 +769,7 @@ a:hover{color:#e6c56a}
       <div class="work-year">1943</div>
       <h2 class="work-title">玻璃球游戏</h2>
       <div class="work-title-de">Das Glasperlenspiel</div>
-      <p class="work-desc">在黑塞去世前一年完成——一部关于未来乌托邦卡斯塔利亚的宏大寓言。玻璃球游戏是融合所有学科的最高精神活动。主人公克内希特的命运，是一个人的精神自由与集体责任之间永恒的张力。诺贝尔文学奖获奖作品。</p>
+      <p class="work-desc">1943年出版——盟军轰炸柏林时，黑塞完成了这部"世界之书"。未来乌托邦卡斯塔利亚中的精英以"玻璃球游戏"追求真理。主人公克内希特从学徒到宗师、从秩序到出走——一个灵魂在精神自由与集体责任之间的永恒张力。诺奖颁奖词称其"以宏大叙事展现了人类精神的最高秩序"。托马斯·曼称其为"继〈魔山〉之后德语文学最伟大的成就"。</p>
       <div class="work-tags"><span>乌托邦</span><span>知识</span><span>精神</span><span>晚年</span><span>诺贝尔奖</span></div>
     </div>
   </article>
@@ -807,6 +815,81 @@ a:hover{color:#e6c56a}
     </div>
   </div>
 </section>
+
+
+
+<!-- ═══ RESEARCH EVOLUTION ═══ -->
+<section class="life-section" style="padding-top:2rem">
+  <h2>黑塞研究的演进与东西方碰撞</h2>
+  <div class="sec-sub">Forschungsgeschichte · 从德语乡土作家到全球精神偶像</div>
+  <div class="life-timeline">
+    <div class="life-item">
+      <div class="life-dot"></div>
+      <div class="life-left"><div class="life-year">1910s–1930s</div><div class="life-title">德语乡土文学</div></div>
+      <div class="life-right"><div class="life-desc">黑塞被视作"乡土浪漫派"（Heimatdichter）传人。纳粹上台后他拒绝合作，作品被冷处理，却未被公开焚烧——因早期作品被误读为"德意志精神"。</div></div>
+    </div>
+    <div class="life-item">
+      <div class="life-dot"></div>
+      <div class="life-left"><div class="life-year">1946–1960</div><div class="life-title">诺奖·复兴</div></div>
+      <div class="life-right"><div class="life-desc">1946年诺奖将黑塞重新推到世界舞台。研究聚焦浪漫主义传统、歌德影响、自传性。1955年第一部系统传记出版。</div></div>
+    </div>
+    <div class="life-item">
+      <div class="life-dot"></div>
+      <div class="life-left"><div class="life-year">1960s–1970s</div><div class="life-title">东方接受</div></div>
+      <div class="life-right"><div class="life-desc">英语世界重新发现黑塞——〈悉达多〉〈荒原狼〉成为反文化运动圣经。日本热潮始于1950年代，中国台湾1970年代翻译〈悉达多〉。研究从纯文学转向比较哲学和跨文化研究。</div></div>
+    </div>
+    <div class="life-item">
+      <div class="life-dot"></div>
+      <div class="life-left"><div class="life-year">1980s–1990s</div><div class="life-title">学术制度化</div></div>
+      <div class="life-right"><div class="life-desc">国际黑塞协会成立，年刊创刊。研究重心转向：荣格心理学与黑塞、黑塞与现代性批判、黑塞政治立场的长期争论。</div></div>
+    </div>
+    <div class="life-item">
+      <div class="life-dot"></div>
+      <div class="life-left"><div class="life-year">2000s–至今</div><div class="life-title">数字人文·全球化</div></div>
+      <div class="life-right"><div class="life-desc">"全球化转向"：中国接受史成为国际显学，印度学者重新解读〈悉达多〉中的"西方人的印度"。数字人文方法追踪其60年创作中关键词的语义迁移。</div></div>
+    </div>
+    <div class="life-item">
+      <div class="life-dot"></div>
+      <div class="life-left"><div class="life-year">东西方碰撞</div><div class="life-title">关键节点</div></div>
+      <div class="life-right"><div class="life-desc">黑塞是"西方中心主义"的背叛者——在尼采和陀思妥耶夫斯基中发现了"西方的疾病"，在印度和中国哲学中寻找解药。通过翻译老子、阅读奥义书、参禅悟道，完成了一次"精神逆向殖民"。</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ NOBEL PRIZE ═══ -->
+<section class="section-intro" style="padding-bottom:2rem">
+  <h2 style="font-family:var(--font-display);font-size:clamp(1.5rem,3vw,2rem);font-weight:600;text-align:center;margin-bottom:.5rem;color:var(--ink)">诺贝尔文学奖 · 1946</h2>
+  <p style="max-width:680px;margin:0 auto;text-align:center;font-size:.9rem;line-height:1.9;color:var(--muted)">
+    颁奖词：「<em>他那灵思盎然的诗篇——它们一方面具有高度的创意和深刻的洞见，一方面象征古典的人道理想与高尚的风格。</em>」
+  </p>
+</section>
+<section class="works-grid" style="padding-top:0;gap:3rem;max-width:720px">
+  <article class="work-card" style="grid-template-columns:1fr;gap:1.5rem;opacity:1">
+    <div class="work-text">
+      <p class="work-desc" style="font-size:.9rem;line-height:1.8">瑞典学院常任秘书安德斯·厄斯特林在授奖辞中特别指出：<em>"黑塞的〈玻璃球游戏〉以宏大叙事展现了人类精神的最高秩序，其语言具有雕刻般的精确与音乐般的韵律。"</em></p>
+      <p class="work-desc" style="font-size:.85rem;margin-top:1rem">同年获奖的还有：安德烈·纪德（1947）· T.S.艾略特（1948）· 威廉·福克纳（1949）· 伯特兰·罗素（1950）。黑塞在战后的第一批获奖者中，代表了一种被战争摧残却未被摧毁的欧洲人文主义传统。</p>
+    </div>
+  </article>
+</section>
+
+
+<!-- ═══ CORE VOCABULARY ═══ -->
+<section class="history-section" style="padding-top:1rem">
+  <h2>核心词汇 · Schl&uuml;sselbegriffe</h2>
+  <div class="sec-sub">关键词 · 德文对照</div>
+  <div class="history-grid" style="grid-template-columns:1fr 1fr 1fr">
+    <div class="history-card"> <div class="history-era">DER WEG</div> <div class="history-title">道路</div> <div class="history-dates">Der Weg zum Selbst</div> <div class="history-desc">每个人的生命都是一条通往自我（Selbst）的道路。不是外部目标，是内在朝圣。</div> </div>
+    <div class="history-card"> <div class="history-era">DIE SEELE</div> <div class="history-title">灵魂</div> <div class="history-dates">Geist vs. Sinnlichkeit</div> <div class="history-desc">灵魂的完整需要精神与感官的和解——而非偏废。Geist（精神）与 Sinnlichkeit（感官性）的终极统一。</div> </div>
+    <div class="history-card"> <div class="history-era">DIE POLARITAET</div> <div class="history-title">二极性</div> <div class="history-dates">Einheit der Gegensaetze</div> <div class="history-desc">二元对立的消解是黑塞思想的最高追求。纳尔齐斯vs歌尔德蒙——不是二选一，是合一。</div> </div>
+    <div class="history-card"> <div class="history-era">DIE HEIMAT</div> <div class="history-title">故乡</div> <div class="history-dates">Die geistige Heimat</div> <div class="history-desc">黑塞寻找的"故乡"不是地理的，是精神的（die geistige Heimat）。所有主角的共同追寻。</div> </div>
+    <div class="history-card"> <div class="history-era">DIE WANDLUNG</div> <div class="history-title">蜕变</div> <div class="history-dates">Die Haeutung der Seele</div> <div class="history-desc">灵魂的蜕皮（Häutung）。从自我欺骗到自我认识——德米安的"破壳"是最经典的表述。</div> </div>
+    <div class="history-card"> <div class="history-era">DAS SPIEL</div> <div class="history-title">游戏</div> <div class="history-dates">Das Glasperlenspiel</div> <div class="history-desc">万物皆游戏。最高的智慧不是苦修，是游戏（Spiel）。玻璃球游戏是这种精神的终极象征。</div> </div>
+    <div class="history-card"> <div class="history-era">DER FLUSS</div> <div class="history-title">河流</div> <div class="history-dates">Zeit und Ewigkeit</div> <div class="history-desc">悉达多的河流既是时间（万物流逝），又是永恒。倾听河流=倾听存在（das Sein）。</div> </div>
+    <div class="history-card"> <div class="history-era">DAS L&AUML;CHELN</div> <div class="history-title">微笑</div> <div class="history-dates">Das Laecheln des Erleuchteten</div> <div class="history-desc">得道者的标记。不是快乐，是穿透了所有对立之后的平静。</div> </div>
+    <div class="history-card"> <div class="history-era">DIE EINSAMKEIT</div> <div class="history-title">孤独</div> <div class="history-dates">Die Bedingung des Schaffens</div> <div class="history-desc">孤独不是惩罚，是存在的条件（Bedingung des Daseins）。在孤独中，人才能听见灵魂的声音。</div> </div>
+  </div>
+</section>
+
 
 <!-- ═══ FOOTER ═══ -->
 <footer class="site-footer">
