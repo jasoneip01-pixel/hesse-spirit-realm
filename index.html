@@ -4,6 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>黑塞的精神王国 · Hermann Hesse 1877–1962</title>
+<meta name="description" content="赫尔曼·黑塞的精神王国——从叛逆少年到诺奖得主，12部经典作品、生命历程、时代背景、东方哲学与诗歌绘画。一个西方灵魂的内在朝圣全记录。">
+<meta property="og:title" content="黑塞的精神王国 · Hermann Hesse">
+<meta property="og:description" content="从叛逆少年到诺奖得主——黑塞的全部经典作品、生命故事与精神世界。">
+<meta property="og:image" content="https://jasoneip01-pixel.github.io/hesse-spirit-realm/images/cover.webp">
+<meta property="og:type" content="website">
 <link rel="preload" as="image" href="images/cover.webp" fetchpriority="high">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600&family=Inter:wght@200;300;400;500;600&family=Noto+Serif+SC:wght@400;600;700;900&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -66,6 +71,15 @@ a:hover{color:#e6c56a}
 }
 .timeline-dot:not(.active) .year-label{opacity:0;width:0;overflow:hidden}
 .timeline-dot:hover .year-label{opacity:1;width:auto;overflow:visible}
+.timeline-dot-section .dot{
+  width:5px;height:5px;
+  border:1px solid currentColor;
+  background:transparent;
+}
+.timeline-dot-section.active .dot{
+  background:var(--gold);
+  box-shadow:0 0 10px var(--gold);
+}
 
 /* ═══════════════════ HERO ═══════════════════ */
 .hero{
@@ -646,6 +660,7 @@ a:hover{color:#e6c56a}
 <!-- ═══ TIMELINE NAV ═══ -->
 <nav class="timeline-nav" id="timelineNav">
   <button class="timeline-dot" data-target="hero"><span class="dot"></span><span class="year-label">起</span></button>
+  <button class="timeline-dot timeline-dot-section" data-target="lifeTimeline"><span class="dot"></span><span class="year-label">生</span></button>
   <button class="timeline-dot" data-target="w01"><span class="dot"></span><span class="year-label">1904</span></button>
   <button class="timeline-dot" data-target="w02"><span class="dot"></span><span class="year-label">1906</span></button>
   <button class="timeline-dot" data-target="w03"><span class="dot"></span><span class="year-label">1910</span></button>
@@ -657,6 +672,14 @@ a:hover{color:#e6c56a}
   <button class="timeline-dot" data-target="w09"><span class="dot"></span><span class="year-label">1930</span></button>
   <button class="timeline-dot" data-target="w10"><span class="dot"></span><span class="year-label">1932</span></button>
   <button class="timeline-dot" data-target="w11"><span class="dot"></span><span class="year-label">1943</span></button>
+  <button class="timeline-dot timeline-dot-section" data-target="history"><span class="dot"></span><span class="year-label">史</span></button>
+  <button class="timeline-dot timeline-dot-section" data-target="research"><span class="dot"></span><span class="year-label">研</span></button>
+  <button class="timeline-dot timeline-dot-section" data-target="nobel"><span class="dot"></span><span class="year-label">奖</span></button>
+  <button class="timeline-dot timeline-dot-section" data-target="poetry"><span class="dot"></span><span class="year-label">诗</span></button>
+  <button class="timeline-dot timeline-dot-section" data-target="hesse-east"><span class="dot"></span><span class="year-label">东</span></button>
+  <button class="timeline-dot timeline-dot-section" data-target="paintings"><span class="dot"></span><span class="year-label">画</span></button>
+  <button class="timeline-dot timeline-dot-section" data-target="funfacts"><span class="dot"></span><span class="year-label">趣</span></button>
+  <button class="timeline-dot timeline-dot-section" data-target="vocabulary"><span class="dot"></span><span class="year-label">词</span></button>
 </nav>
 
 <!-- ═══ HERO ═══ -->
@@ -1013,8 +1036,7 @@ a:hover{color:#e6c56a}
 
 
 
-<!-- ═══ RESEARCH EVOLUTION ═══ -->
-<section class="life-section" style="padding-top:2rem">
+<section class="life-section" id="research" style="padding-top:2rem">
   <h2>黑塞研究的演进与东西方碰撞</h2>
   <div class="sec-sub">Forschungsgeschichte · 从德语乡土作家到全球精神偶像</div>
   <div class="life-timeline">
@@ -1052,7 +1074,7 @@ a:hover{color:#e6c56a}
 </section>
 
 <!-- ═══ NOBEL PRIZE ═══ -->
-<section class="section-intro" style="padding-bottom:2rem">
+<section class="section-intro" id="nobel" style="padding-bottom:2rem">
   <h2 style="font-family:var(--font-display);font-size:clamp(1.5rem,3vw,2rem);font-weight:600;text-align:center;margin-bottom:.5rem;color:var(--ink)">诺贝尔文学奖 · 1946</h2>
   <p style="max-width:680px;margin:0 auto;text-align:center;font-size:.9rem;line-height:1.9;color:var(--muted)">
     颁奖词：「<em>他那灵思盎然的诗篇——它们一方面具有高度的创意和深刻的洞见，一方面象征古典的人道理想与高尚的风格。</em>」<br>
@@ -1070,7 +1092,7 @@ a:hover{color:#e6c56a}
 
 
 <!-- ═══ POETRY ═══ -->
-<section class="history-section" style="padding-top:1rem">
+<section class="history-section" id="poetry" style="padding-top:1rem">
   <h2>黑塞的诗</h2>
   <div class="sec-sub">Gedichte · 诺奖颁奖词：灵思盎然的诗篇</div>
   <div class="poetry-stanza">
@@ -1107,7 +1129,7 @@ a:hover{color:#e6c56a}
 
 
 <!-- ═══ HESSE & EAST ═══ -->
-<section class="history-section" style="padding-top:1rem">
+<section class="history-section" id="hesse-east" style="padding-top:1rem">
   <h2>黑塞与东方</h2>
   <div class="sec-sub">Ost und West · 一个西方灵魂的东方朝圣</div>
   <div class="history-grid">
@@ -1136,7 +1158,7 @@ a:hover{color:#e6c56a}
 
 
 <!-- ═══ PAINTINGS ═══ -->
-<section class="history-section" style="padding-top:1rem">
+<section class="history-section" id="paintings" style="padding-top:1rem">
   <h2>黑塞的绘画</h2>
   <div class="sec-sub">Aquarelle · 三千幅水彩中的诗意世界</div>
   <div style="max-width:var(--max-w);margin:0 auto;padding:0 2rem;text-align:center">
@@ -1154,7 +1176,7 @@ a:hover{color:#e6c56a}
 
 
 <!-- ═══ FUN FACTS ═══ -->
-<section class="history-section" style="padding-top:1rem">
+<section class="history-section" id="funfacts" style="padding-top:1rem">
   <h2>花絮 · 一个人的另一面</h2>
   <div class="sec-sub">Anekdoten · 不为人知的黑塞</div>
   <div class="fun-grid">
@@ -1193,7 +1215,7 @@ a:hover{color:#e6c56a}
 
 
 <!-- ═══ CORE VOCABULARY ═══ -->
-<section class="history-section" style="padding-top:1rem">
+<section class="history-section" id="vocabulary" style="padding-top:1rem">
   <h2>核心词汇 · Schl&uuml;sselbegriffe</h2>
   <div class="sec-sub">关键词 · 德文对照</div>
   <div class="history-grid history-grid-wide">
@@ -1281,7 +1303,7 @@ document.addEventListener('keydown',(e)=>{
 });
 
 // ── Timeline Nav active tracking ──
-const sections = ['hero','w01','w02','w03','w04','w05','w06','w07','w08','w09','w10','w11'];
+const sections = ['hero','lifeTimeline','w01','w02','w03','w04','w05','w06','w07','w08','w09','w10','w11','history','research','nobel','poetry','hesse-east','paintings','funfacts','vocabulary'];
 const dots = document.querySelectorAll('.timeline-dot');
 
 function updateNav(){
